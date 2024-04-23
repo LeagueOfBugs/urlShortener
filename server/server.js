@@ -19,7 +19,8 @@ app.post("/shortify", (req, res) => {
   // check db for existing matches from couchDBService
   
   // save to db from couchDBService
-  
+  const test = isKeyInDb('qn5gxRPy');
+  console.log(`test: `, test)
   res.send(shortednedUrl);
 });
 
@@ -29,12 +30,3 @@ app.get("/:key", (req, res) => {});
 app.listen(port, () => {
   `listening on port ${port}`;
 });
-
-
-{
-  originalUrl: "",
-  key: "",
-  expire: "",
-  userr: "",
-  timestamp: ""
-}
