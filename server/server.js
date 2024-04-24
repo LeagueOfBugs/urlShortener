@@ -1,7 +1,7 @@
 import express from "express";
 import { nanoid } from "nanoid";
 
-import { saveToDb, isKeyInDb } from "../services/couchDBService.js";
+import { insertDocument, isKeyInDb } from "../services/couchDBService.js";
 const app = express();
 const port = 3000;
 // import couchDBService from "../services/couchDBService";
@@ -15,12 +15,12 @@ app.post("/shortify", (req, res) => {
   // console.log(nanoid(8));
   // create key for original url
   const shortednedUrl = `${domain}/${key}`;
-  
+
   // check db for existing matches from couchDBService
-  
+
   // save to db from couchDBService
-  const test = isKeyInDb('qn5gxRPy');
-  console.log(`test: `, test)
+  const test = insertDocument(key);
+  console.log(`test: `, test);
   res.send(shortednedUrl);
 });
 
