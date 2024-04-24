@@ -21,6 +21,7 @@ app.post("/shortify", (req, res) => {
   // save to db from couchDBService
   const test = insertDocument(key);
   console.log(`test: `, test);
+  console.log(`test: `, test);
   res.send(shortednedUrl);
 });
 
