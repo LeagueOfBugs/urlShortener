@@ -2,7 +2,7 @@ import express from "express";
 import { nanoid } from "nanoid";
 import { addDays, format } from "date-fns";
 
-import { insertDocument, isKeyInDb } from "../services/couchDBService.js";
+import { insertDocument, isKeyTaken } from "../services/couchDBService.js";
 const app = express();
 const port = 3000;
 
@@ -13,7 +13,7 @@ const domain = "https://www.something.com";
 
 app.post("/shortify", (req, res) => {
   const { url, customKey, customExpireDate } = req.body;
-  
+
   const generatedKey = nanoid(8);
   const key = customKey || generatedKey;
 
@@ -22,6 +22,7 @@ app.post("/shortify", (req, res) => {
   const date = customExpireDate || 15;
   const expiryDate = addDays(timestamp, date);
 
+  // document with metadata
   const doc = {
     _id: key,
     originalUrl: url,
@@ -31,7 +32,7 @@ app.post("/shortify", (req, res) => {
   };
 
   // check db for existing matches from couchDBService
-  if (!isKeyInDb(key)) {
+  if (isKeyTaken(key)) {
     // save to db from couchDBService
     insertDocument(doc);
   }

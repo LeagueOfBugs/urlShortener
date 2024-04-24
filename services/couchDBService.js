@@ -17,13 +17,14 @@ async function insertDocument(doc) {
 
 // async function destroFromDb(key) {}
 
-async function isKeyInDb(key) {
+async function isKeyTaken(key) {
   try {
     const response = await db.get(key, { revs_info: true });
-    if (response._id) return true;
+    console.log(response);
+    if (!response._id) return true;
   } catch (error) {
     return false;
   }
 }
 
-export { insertDocument, isKeyInDb };
+export { insertDocument, isKeyTaken };
