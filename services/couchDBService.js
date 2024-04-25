@@ -15,16 +15,25 @@ async function insertDocument(doc) {
   }
 }
 
-// async function destroFromDb(key) {}
+async function deleteKey(key) {}
+
+async function redirect(key) {
+  const doc = await findDocument(key);
+  return doc.originalUrl;
+}
+
+async function findDocument(key) {
+  const response = await db.get(key, { revs_info: true });
+  return response;
+}
 
 async function isKeyTaken(key) {
   try {
     const response = await db.get(key, { revs_info: true });
-    console.log(response);
     if (!response._id) return true;
   } catch (error) {
     return false;
   }
 }
 
-export { insertDocument, isKeyTaken };
+export { insertDocument, isKeyTaken, findDocument, redirect, deleteKey };

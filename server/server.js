@@ -2,13 +2,17 @@ import express from "express";
 import { nanoid } from "nanoid";
 import { addDays, format } from "date-fns";
 
-import { insertDocument, isKeyTaken } from "../services/couchDBService.js";
+import {
+  insertDocument,
+  isKeyTaken,
+  findDocument,
+  redirect,
+} from "../services/couchDBService.js";
 const app = express();
 const port = 3000;
 
 app.use(express.json());
 
-// shorten url
 const domain = "https://www.something.com";
 
 app.post("/shortify", (req, res) => {
@@ -41,7 +45,15 @@ app.post("/shortify", (req, res) => {
 });
 
 // redirection of url
-app.get("/:key", (req, res) => {});
+app.get("/:key", (req, res) => {
+  const { key } = req.query;
+  console.log(req.query);
+});
+
+app.get("/delete", (req, res) => {
+  // const test = redirect("abc1sd2345feddddsd");
+  res.send(301, "https://www.google.com");
+});
 
 app.listen(port, () => {
   `listening on port ${port}`;
