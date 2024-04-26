@@ -6,7 +6,7 @@ import {
   insertDocument,
   isKeyTaken,
   findDocument,
-  redirect,
+  deleteKey,
 } from "../services/couchDBService.js";
 const app = express();
 const port = 3000;
@@ -22,7 +22,7 @@ app.post("/shortify", (req, res) => {
   const key = customKey || generatedKey;
 
   const timestamp = new Date();
-  const shortednedUrl = `${domain}/${key}`;
+  const shortenedUrl = `${domain}/${key}`;
   const date = customExpireDate || 15;
   const expiryDate = addDays(timestamp, date);
 
@@ -30,7 +30,7 @@ app.post("/shortify", (req, res) => {
   const doc = {
     _id: key,
     originalUrl: url,
-    shortenedUrl: shortednedUrl,
+    shortenedUrl: shortenedUrl,
     timestamp: format(timestamp, "yyyy-MM-dd"),
     expireDate: format(expiryDate, "yyyy-MM-dd"),
   };
@@ -45,14 +45,21 @@ app.post("/shortify", (req, res) => {
 });
 
 // redirection of url
-app.get("/:key", (req, res) => {
-  const { key } = req.query;
-  console.log(req.query);
+app.get("/delete/:key", (req, res) => {
+  const { key } = req.params;
+
+  deleteKey(key);
+  
 });
 
-app.get("/delete", (req, res) => {
-  // const test = redirect("abc1sd2345feddddsd");
-  res.send(301, "https://www.google.com");
+app.get("/:key", async (req, res) => {
+  const { key } = req.params;
+
+  // Find key in db
+  const document = await findDocument(key);
+
+  // redirect to original URL
+  res.redirect(301, document.originalUrl);
 });
 
 app.listen(port, () => {

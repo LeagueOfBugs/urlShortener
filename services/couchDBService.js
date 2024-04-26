@@ -15,15 +15,16 @@ async function insertDocument(doc) {
   }
 }
 
-async function deleteKey(key) {}
+async function deleteKey(key) {
+  const document = await findDocument(key);
+  const documentRev = document._rev;
 
-async function redirect(key) {
-  const doc = await findDocument(key);
-  return doc.originalUrl;
+  db.destroy(key, documentRev);
 }
 
 async function findDocument(key) {
   const response = await db.get(key, { revs_info: true });
+  //   console.log("find document function", response);
   return response;
 }
 
@@ -36,4 +37,4 @@ async function isKeyTaken(key) {
   }
 }
 
-export { insertDocument, isKeyTaken, findDocument, redirect, deleteKey };
+export { insertDocument, isKeyTaken, findDocument, deleteKey };
