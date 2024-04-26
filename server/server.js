@@ -45,11 +45,16 @@ app.post("/shortify", (req, res) => {
 });
 
 // redirection of url
-app.get("/delete/:key", (req, res) => {
+app.get("/delete/:key", async (req, res) => {
   const { key } = req.params;
 
-  deleteKey(key);
-  
+  const response = await deleteKey(key);
+
+  if (response) {
+    res.send("Key successfully deleted");
+  } else {
+    res.send("Something went wrong deleting your key");
+  }
 });
 
 app.get("/:key", async (req, res) => {

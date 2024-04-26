@@ -19,12 +19,16 @@ async function deleteKey(key) {
   const document = await findDocument(key);
   const documentRev = document._rev;
 
-  db.destroy(key, documentRev);
+  const destroy = await db.destroy(key, documentRev);
+  if (destroy.ok) {
+    return true;
+  } else {
+    throw new Error({ message: "Something went wrong deleting key" });
+  }
 }
 
 async function findDocument(key) {
   const response = await db.get(key, { revs_info: true });
-  //   console.log("find document function", response);
   return response;
 }
 
