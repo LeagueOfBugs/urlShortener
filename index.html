@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -7,7 +7,15 @@
     <title>Vite App</title>
   </head>
   <body>
-    <div id="app"></div>
+    <h1>URL Shortener</h1>
+    <form>
+      <label>Url to shorten: </label>
+      <input type="url" id="url" name="original-url">
+      <label>Custom Key (optional): </label>
+      <input type="text" id="key" name="custom-url">
+      <label>Custom Expiration Date (optional): </label>
+      <input type="date" id="expiration" name="custom-expiration">
+    </form>
     <script type="module" src="/main.js"></script>
   </body>
 </html>
