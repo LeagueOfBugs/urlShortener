@@ -7,7 +7,7 @@ import {
   isKeyTaken,
   findDocument,
   deleteKey,
-} from "../services/couchDBService.js";
+} from "../service/couchDBService.js";
 const app = express();
 const port = 3000;
 
