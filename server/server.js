@@ -17,15 +17,15 @@ const domain = "https://www.something.com";
 
 app.post("/shortify", (req, res) => {
   const { url, customKey, customExpireDate } = req.body;
-
+  console.log(url)
   const generatedKey = nanoid(8);
   const key = customKey || generatedKey;
-
+  
   const timestamp = new Date();
   const shortenedUrl = `${domain}/${key}`;
   const date = customExpireDate || 15;
   const expiryDate = addDays(timestamp, date);
-
+  
   // document with metadata
   const doc = {
     _id: key,
@@ -40,7 +40,7 @@ app.post("/shortify", (req, res) => {
     // save to db from couchDBService
     insertDocument(doc);
   }
-
+  console.log(doc);
   res.send(doc);
 });
 
@@ -70,7 +70,6 @@ app.get("/:key", async (req, res) => {
 app.listen(port, () => {
   `listening on port ${port}`;
 });
-
 
 /*
 
