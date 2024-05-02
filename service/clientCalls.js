@@ -32,4 +32,28 @@ export async function shortenUrl(url, customKey, customExpireDate) {
   }
 }
 
-export async function findExistingKey() {}
+export async function findExistingKey(key) {
+  const requestOptions = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  try {
+    const response = await fetch(
+      `http://www.localhost:3000/retrieve/${key}`,
+      requestOptions
+    );
+
+    if (!response.ok) {
+      throw new Error("Something went wrrong while fetching");
+    }
+
+    const responseData = await response.json();
+
+    return responseData;
+  } catch (error) {
+    console.log(error);
+  }
+}

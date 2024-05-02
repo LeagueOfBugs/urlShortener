@@ -46,7 +46,7 @@ app.post("/shortify", (req, res) => {
 });
 
 // redirection of url
-app.get("/delete/:key", async (req, res) => {
+app.delete("/delete/:key", async (req, res) => {
   const { key } = req.params;
 
   const response = await deleteKey(key);
@@ -55,6 +55,16 @@ app.get("/delete/:key", async (req, res) => {
     res.send("Key successfully deleted");
   } else {
     res.send("Something went wrong deleting your key");
+  }
+});
+
+app.post("/retrieve/:key", async (req, res) => {
+  const { key } = req.params;
+  const document = await findDocument(key);
+  if (document) {
+    res.send(document);
+  } else {
+    res.send(false);
   }
 });
 

@@ -28,8 +28,12 @@ async function deleteKey(key) {
 }
 
 async function findDocument(key) {
-  const response = await db.get(key, { revs_info: true });
-  return response;
+  try {
+    const response = await db.get(key, { revs_info: true });
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 async function isKeyTaken(key) {
