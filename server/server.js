@@ -1,7 +1,7 @@
 import express from "express";
 import { nanoid } from "nanoid";
 import { addDays, format } from "date-fns";
-
+import cors from "cors";
 import {
   insertDocument,
   isKeyTaken,
@@ -12,20 +12,21 @@ const app = express();
 const port = 3000;
 
 app.use(express.json());
+app.use(cors());
 
 const domain = "https://www.something.com";
 
 app.post("/shortify", (req, res) => {
   const { url, customKey, customExpireDate } = req.body;
-  console.log(url)
+  console.log(url);
   const generatedKey = nanoid(8);
   const key = customKey || generatedKey;
-  
+
   const timestamp = new Date();
   const shortenedUrl = `${domain}/${key}`;
   const date = customExpireDate || 15;
   const expiryDate = addDays(timestamp, date);
-  
+
   // document with metadata
   const doc = {
     _id: key,

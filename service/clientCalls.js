@@ -15,9 +15,11 @@ export async function shortenUrl(url, customKey, customExpireDate) {
   console.log("requestOptions", requestOptions);
 
   try {
-    const response = await fetch("http://www.localhost:3000/shortify", requestOptions);
+    const response = await fetch(
+      "http://www.localhost:3000/shortify",
+      requestOptions
+    );
     console.log(response);
-    
   } catch (error) {
     console.log(error);
   }
