@@ -15,5 +15,4 @@ urlFormEl.addEventListener("submit", async (evt) => {
   const expiration = expirationEl.value;
 
   const result = await shortenUrl(url, key, expiration);
-  console.log("rersult", result);
 });

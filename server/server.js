@@ -41,7 +41,7 @@ app.post("/shortify", (req, res) => {
     // save to db from couchDBService
     insertDocument(doc);
   }
-  console.log(doc);
+
   res.send(doc);
 });
 
@@ -71,7 +71,3 @@ app.get("/:key", async (req, res) => {
 app.listen(port, () => {
   `listening on port ${port}`;
 });
-
-/*
-
-*/
