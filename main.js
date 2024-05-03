@@ -11,7 +11,6 @@ import { shortenUrl, findExistingKey } from "./service/clientCalls";
 document.addEventListener(
   "input",
   debounce(async (evt) => {
-    console.log("evt.target", evt.target.style.display);
     switch (evt.target.id) {
       case "url":
         break;
@@ -22,7 +21,6 @@ document.addEventListener(
           urlError.textContent = "Key already taken. Please choose another";
           urlError.style.visibility = "visible";
           submitBtn.disabled = true;
-          console.log(submitBtn);
         } else {
           urlError.style.visibility = "hidden";
           submitBtn.disabled = false;
@@ -37,7 +35,7 @@ document.addEventListener(
   }, 490)
 );
 
-urlFormEl.addEventListener("submit", async (evt) => {
+urlFormEl.addEventListener("submit", async function (evt) {
   evt.preventDefault();
 
   const url = urlToShortenEl.value;
@@ -45,4 +43,8 @@ urlFormEl.addEventListener("submit", async (evt) => {
   const expiration = expirationEl.value;
 
   const result = await shortenUrl(url, key, expiration);
+
+  if (result) {
+    this.reset();
+  }
 });

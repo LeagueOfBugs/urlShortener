@@ -18,7 +18,6 @@ const domain = "https://www.something.com";
 
 app.post("/shortify", (req, res) => {
   const { url, customKey, customExpireDate } = req.body;
-  console.log(url);
   const generatedKey = nanoid(8);
   const key = customKey || generatedKey;
 
