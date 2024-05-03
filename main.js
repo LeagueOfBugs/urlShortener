@@ -21,10 +21,11 @@ document.addEventListener(
           // cannot use key
           urlError.textContent = "Key already taken. Please choose another";
           urlError.style.visibility = "visible";
-          submitBtn.disable = true;
+          submitBtn.disabled = true;
+          console.log(submitBtn);
         } else {
           urlError.style.visibility = "hidden";
-          submitBtn.disable = false;
+          submitBtn.disabled = false;
         }
         break;
       case "expiration":
