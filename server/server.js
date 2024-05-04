@@ -16,6 +16,7 @@ app.use(cors());
 
 const domain = "https://www.something.com";
 
+// Shorten Url
 app.post("/shortify", (req, res) => {
   const { url, customKey, customExpireDate } = req.body;
   const generatedKey = nanoid(8);
@@ -44,7 +45,7 @@ app.post("/shortify", (req, res) => {
   res.send(doc);
 });
 
-// redirection of url
+// Delete key
 app.delete("/delete/:key", async (req, res) => {
   const { key } = req.params;
 
@@ -57,6 +58,7 @@ app.delete("/delete/:key", async (req, res) => {
   }
 });
 
+// retreive docs with key
 app.post("/retrieve/:key", async (req, res) => {
   const { key } = req.params;
   const document = await findDocument(key);
@@ -67,6 +69,7 @@ app.post("/retrieve/:key", async (req, res) => {
   }
 });
 
+// redirection
 app.get("/:key", async (req, res) => {
   const { key } = req.params;
 

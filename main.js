@@ -8,6 +8,7 @@ const submitBtn = document.querySelector("#submit");
 const urlError = document.querySelector("#url-error");
 import { shortenUrl, findExistingKey } from "./service/clientCalls";
 
+// Form input logic and error handling
 document.addEventListener(
   "input",
   debounce(async (evt) => {
@@ -35,6 +36,7 @@ document.addEventListener(
   }, 490)
 );
 
+// Form submit logic
 urlFormEl.addEventListener("submit", async function (evt) {
   evt.preventDefault();
 
@@ -46,5 +48,6 @@ urlFormEl.addEventListener("submit", async function (evt) {
 
   if (result) {
     this.reset();
+    this.style.visibility = "hidden";
   }
 });
