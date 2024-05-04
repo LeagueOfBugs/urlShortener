@@ -8,13 +8,14 @@ import {
   findDocument,
   deleteKey,
 } from "../service/couchDBService.js";
+import { urlValidator } from "../utils/urlValidator.js";
 const app = express();
 const port = 3000;
 
 app.use(express.json());
 app.use(cors());
 
-const domain = "https://www.something.com";
+const domain = "http://localhost:3000";
 
 // Shorten Url
 app.post("/shortify", (req, res) => {
@@ -75,8 +76,9 @@ app.get("/:key", async (req, res) => {
 
   // Find key in db
   const document = await findDocument(key);
-  console.log("document", document); // if key is not found redirect to home
-  if (document === undefined) {
+
+  // if key is not found redirect to home
+  if (!document) {
     res.redirect(301, "http://www.localhost:5173");
   } else {
     // redirect to original URL

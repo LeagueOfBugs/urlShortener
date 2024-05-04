@@ -7,6 +7,8 @@ const expirationEl = document.querySelector("#expiration");
 const submitBtn = document.querySelector("#submit");
 const urlError = document.querySelector("#url-error");
 const shortenedUrlContainer = document.querySelector("#submission-container");
+const shortenedUrl = document.querySelector("#shortened-url");
+const homeNavBtn = document.querySelector("#home-nav-btn");
 
 import { shortenUrl, findExistingKey } from "./service/clientCalls";
 
@@ -45,16 +47,13 @@ urlFormEl.addEventListener("submit", async function (evt) {
   const url = urlToShortenEl.value;
   const key = keyEl.value;
   const expiration = expirationEl.value;
-  const resultSpan = document.createElement("span");
 
   const result = await shortenUrl(url, key, expiration);
-  console.log("result", result);
   if (result) {
     this.reset();
-    this.style.visibility = "hidden";
 
-    resultSpan.textContent = result;
-    shortenedUrlContainer.appendChild(resultSpan);
+    shortenedUrl.textContent = result;
+    shortenedUrl.href = url;
     shortenedUrlContainer.style.visibility = "visible";
   }
 });

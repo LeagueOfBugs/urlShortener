@@ -11,7 +11,7 @@
     <form id="url-form">
       <section>
         <label>Url to shorten: </label>
-        <input type="text" id="url" name="original-url" />
+        <input type="url" id="url" name="original-url" />
         <br />
       </section>
       <section>
@@ -28,8 +28,9 @@
     <section id="submission-container">
       <p>New URL</p>
       <div>
-        <span id="shortened-url"></span>
+        <a id="shortened-url"></a>
       </div>
+      <button id="home-nav-btn">home</button>
     </section>
     <script type="module" src="/main.js"></script>
   </body>
