@@ -30,6 +30,7 @@ async function deleteKey(key) {
 async function findDocument(key) {
   try {
     const response = await db.get(key, { revs_info: true });
+    if (!response) return;
     return response;
   } catch (error) {
     console.log(error);

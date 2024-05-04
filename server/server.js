@@ -75,9 +75,13 @@ app.get("/:key", async (req, res) => {
 
   // Find key in db
   const document = await findDocument(key);
-
-  // redirect to original URL
-  res.redirect(301, document.originalUrl);
+  console.log("document", document); // if key is not found redirect to home
+  if (document === undefined) {
+    res.redirect(301, "http://www.localhost:5173");
+  } else {
+    // redirect to original URL
+    res.redirect(301, document.originalUrl);
+  }
 });
 
 app.listen(port, () => {
