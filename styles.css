@@ -22,3 +22,7 @@ color: red;
 font-size: 1em;
 visibility: hidden;
 }
+
+#submission-container{
+    visibility: hidden;
+}

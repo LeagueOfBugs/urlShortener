@@ -6,6 +6,8 @@ const keyEl = document.querySelector("#key");
 const expirationEl = document.querySelector("#expiration");
 const submitBtn = document.querySelector("#submit");
 const urlError = document.querySelector("#url-error");
+const shortenedUrlContainer = document.querySelector("#submission-container");
+
 import { shortenUrl, findExistingKey } from "./service/clientCalls";
 
 // Form input logic and error handling
@@ -43,11 +45,16 @@ urlFormEl.addEventListener("submit", async function (evt) {
   const url = urlToShortenEl.value;
   const key = keyEl.value;
   const expiration = expirationEl.value;
+  const resultSpan = document.createElement("span");
 
   const result = await shortenUrl(url, key, expiration);
-
+  console.log("result", result);
   if (result) {
     this.reset();
     this.style.visibility = "hidden";
+
+    resultSpan.textContent = result;
+    shortenedUrlContainer.appendChild(resultSpan);
+    shortenedUrlContainer.style.visibility = "visible";
   }
 });
