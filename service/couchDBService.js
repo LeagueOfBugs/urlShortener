@@ -37,7 +37,7 @@ async function findDocument(key) {
   }
 }
 
-async function isKeyTaken(key) {
+async function isKeyNotTaken(key) {
   try {
     const response = await db.get(key, { revs_info: true });
     if (!response._id) return true;
@@ -46,4 +46,4 @@ async function isKeyTaken(key) {
   }
 }
 
-export { insertDocument, isKeyTaken, findDocument, deleteKey };
+export { insertDocument, isKeyNotTaken, findDocument, deleteKey };

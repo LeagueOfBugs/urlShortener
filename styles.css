@@ -18,11 +18,16 @@ section{
 }
 
 #url-error{
-color: red;
-font-size: 1em;
-visibility: hidden;
+    color: red;
+    font-size: 1em;
+    visibility: hidden;
 }
 
 #submission-container{
     visibility: hidden;
+}
+
+#shortened-url{
+    font-weight: bold;
+    font-size: 2em;
 }

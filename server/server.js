@@ -4,11 +4,10 @@ import { addDays, format } from "date-fns";
 import cors from "cors";
 import {
   insertDocument,
-  isKeyTaken,
+  isKeyNotTaken,
   findDocument,
   deleteKey,
 } from "../service/couchDBService.js";
-import { urlValidator } from "../utils/urlValidator.js";
 const app = express();
 const port = 3000;
 
@@ -38,7 +37,7 @@ app.post("/shortify", (req, res) => {
   };
 
   // check db for existing matches from couchDBService
-  if (isKeyTaken(key)) {
+  if (isKeyNotTaken(key)) {
     // save to db from couchDBService
     insertDocument(doc);
   }
