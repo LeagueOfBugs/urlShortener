@@ -8,7 +8,6 @@ const submitBtn = document.querySelector("#submit");
 const urlError = document.querySelector("#url-error");
 const shortenedUrlContainer = document.querySelector("#submission-container");
 const shortenedUrl = document.querySelector("#shortened-url");
-const homeNavBtn = document.querySelector("#home-nav-btn");
 
 import { shortenUrl, findExistingKey } from "./service/clientCalls";
 

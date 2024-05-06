@@ -21,7 +21,6 @@ app.post("/shortify", (req, res) => {
   const { url, customKey, customExpireDate } = req.body;
   const generatedKey = nanoid(8);
   const key = customKey || generatedKey;
-
   const timestamp = new Date();
   const shortenedUrl = `${domain}/${key}`;
   const date = customExpireDate || 15;
