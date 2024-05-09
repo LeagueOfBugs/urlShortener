@@ -1,33 +1,157 @@
 body{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    height: 100svh;
+    overflow: hidden;
+    margin: 0;
+    font-family: "Roboto Slab", serif;
 }
 
-#url-form{
+p{
+    margin: 0;
+    padding: 0;
+}
+
+input{
+    all: unset;
+    height: 45px;
+    width: 450px;
+}
+
+button{
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    color: inherit;
+    font: inherit;
+    outline: none;
+    padding: 0;
+    margin: 0;
+    text-align: inherit;
+    cursor: pointer;
+}
+
+.flex-row{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 #title{
-    font-size: 4rem;
+    text-align: center;
+    font-weight: 300;
+}
+
+#container{
+    background-color: #F1F2F3;
+    width: fit-content;
+    height: 650px;
+    border: 1px solid #D0D0D0;
+    border-radius: 20px;
+    position: relative;
+}
+
+#url-form{
+    position: relative;
+    padding: 0 20px;
+}
+
+.input-containers{
+    display: flex;
+    flex-direction: column;
+}
+
+#wrapper{
+    width: fit-content;
+    margin: auto;
+}
+
+#required{
+    text-align: end;
+    margin-right: 25px;
+}
+
+.input{
+    border: 1px solid #D0D0D0;
+    border-radius: 5px;
+    background-color: #ffffff;
+    padding: 10px;
+    font-size: 18px;
+    color: #000000;
+    font-weight: 100;
 }
 
 section{
-    margin: 30px 0;
+    margin: 10px 0;
+}
+
+label{
+    font-size: 20px;
+    margin-left: 8px;
 }
 
 #url-error{
-    color: red;
-    font-size: 1em;
     visibility: hidden;
 }
 
 #submission-container{
-    visibility: hidden;
+    margin-top: 50px;
+    padding: 0 20px;
+    height: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-#shortened-url{
-    font-weight: bold;
-    font-size: 2em;
+#submit{
+    position: absolute;
+    height: 70px;
+    width: 100%;
+    background-color: #01001F;
+    color: #ffffff;
+    bottom: 0;
+    text-align: center;
+    font-size: 32px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    font-weight: 300;
+}
+
+#url{
+    resize: vertical;
+    max-height: 150px;
+    border-color: #D0D0D0;
+    min-height: 45px;
+    border-radius: 5px;
+    padding: 10px;
+    font-family: "Roboto Slab", serif;
+    font-weight: 100;
+    font-size: 18px;
+}
+
+#url:focus{
+    outline: none;
+}
+
+.space{
+    flex: 1;
+}
+
+.metadata{
+    width: 200px;
+}
+
+.icon-container{
+    display: flex;
+    align-items: center;
+}
+
+#original-url, #expiration-date, #shortened-url, #required{
+    font-weight: 200;
+}
+
+.result-label{
+    font-size: 20px;
+}
+
+#expiration{
+    width: 100px;
+    text-align: center;
 }

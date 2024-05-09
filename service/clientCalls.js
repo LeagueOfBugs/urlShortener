@@ -25,7 +25,7 @@ export async function shortenUrl(url, customKey, customExpireDate) {
 
     const responseData = await response.json();
 
-    return responseData.shortenedUrl;
+    return responseData;
   } catch (error) {
     // expand error handling
     console.log(error);
