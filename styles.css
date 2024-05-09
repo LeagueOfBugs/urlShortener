@@ -61,11 +61,22 @@ button{
 #wrapper{
     width: fit-content;
     margin: auto;
+    position: relative;
 }
 
 #required{
     text-align: end;
     margin-right: 25px;
+    margin-bottom: 5px;
+}
+
+#asterisk{
+    position: absolute;
+    right: 10px;
+}
+
+#required-url{
+    margin-left: 5px;
 }
 
 .input{
@@ -154,4 +165,10 @@ label{
 #expiration{
     width: 100px;
     text-align: center;
+}
+
+#url-error{
+    color: #ff0000;
+    text-align: end;
+    font-weight: 200;
 }

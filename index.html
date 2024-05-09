@@ -9,12 +9,19 @@
       href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap"
       rel="stylesheet"
     />
+    <script
+      src="https://kit.fontawesome.com/4e90c0a416.js"
+      crossorigin="anonymous"
+    ></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
   </head>
   <body>
     <h1 id="title">URL Shortener</h1>
     <div id="wrapper">
+      <div id="asterisk">
+        <i class="fa-solid fa-asterisk fa-2xs" style="color: #ff0000"></i>
+      </div>
       <p id="required">Indicates required</p>
       <div id="container">
         <form id="url-form">
@@ -27,6 +34,12 @@
                 height="35"
               ></object>
               <label>Url to shorten</label>
+              <div id="required-url">
+                <i
+                  class="fa-solid fa-asterisk fa-2xs"
+                  style="color: #ff0000"
+                ></i>
+              </div>
             </div>
             <textarea id="url" name="original-url"></textarea>
             <br />
